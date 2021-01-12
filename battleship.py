@@ -2,6 +2,8 @@ import time
 import os
 import copy
 from string import ascii_uppercase
+from battleship_ascii import battleship_art
+from battleship_ascii import battleship_rules
 # import ascii_art from another file
 # import rules from the upper file just another variable
 
@@ -87,12 +89,20 @@ def all_ship_sunk(board):
 
 def intro():
     # prints out some badass colored ascii animation
-    pass
+    clear()
+    for i in range(10):
+        for i in range(7):
+            print(battleship_art[i])
+            time.sleep(0.3)
+            clear()
 
 
 def rules():
     # prints out rules+ascii art
-    pass
+    clear()
+    print(battleship_art[3])
+    print(battleship_rules[0])
+    input("\nPress any key to continue...")
 
 
 def outro():
@@ -124,5 +134,5 @@ def main():
 if __name__ == "__main__":
     intro()
     rules()
-    main()
-    outro()
+    #main()
+    #outro()
