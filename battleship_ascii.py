@@ -347,6 +347,27 @@ battleship_art = [
                     \|}:::::|:::::::::{:::|'/             --=~=-- '
                        \|}:::::|::{:::|'/  
 
+ ''','''
+                              (#)
+                               |                 
+                            _.#-+._
+                        -==|_.---._|==-
+                           _\|   |/_
+                          :__|   |/_:
+                      --==|_.-----._|==--
+                        \ _/       \ _/
+                      '{"!  0 0 0 0  !"}'
+                 ====={                 }======
+            [________/_____:::::::::_____\________]    
+            |          Choose game mode           |
+            |"---___.                   .____----"|
+            |                                     |
+    --=~=-- '\}:::|:::::}::::::::::::::::|::::::{/  --=~=-- '   --=~=-- ' 
+              '\|::::}::::::::::::::::|:::::{:|'/  .,.
+--=~=-- '       \|}:::::|::::::::::::::::{:::|'/         
+                 \|:}::|::::|:::::::::::::|'~`/
+                    \|}:::::|:::::::::{:::|'/             --=~=-- '
+                       \|}:::::|::{:::|'/  
 
 
 ''','''
@@ -386,9 +407,7 @@ Each player places the 5 ships somewhere on their board.
 - No ships may be placed on another ship.
 
 The 5 ships are:
-- Carrier (occupies 5 spaces)
-- Battleship (4),
-- Cruiser (3)
-- Submarine (3)
-- Destroyer (2).  
+- Carrier (occupies 4 spaces)
+- Battleship (occupies 3 spaces)
+- Cruiser (occupies 2 spaces)
  ''']
