@@ -273,3 +273,14 @@ def rules():
     print(battleship_rules[0])
     input("\nPress any key to continue...")
     clear()
+
+
+def intro():
+    '''Intro animation'''
+    for i in range(3):
+        for i in range(7):
+            print("\033[0;34;48m \033")
+            print(battleship_art[i])
+            print("\033[0;37;48m\n")
+            time.sleep(0.3)
+            clear()
