@@ -284,3 +284,11 @@ def intro():
             print("\033[0;37;48m\n")
             time.sleep(0.3)
             clear()
+
+
+def outro():
+    '''prints out Game over + ascii art'''
+    clear()
+    print("\033[0;34;48m \033")
+    print(battleship_art[13])
+    print(battleship_art[15])
