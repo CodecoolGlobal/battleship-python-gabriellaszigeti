@@ -60,3 +60,12 @@ def ask_for_user_input():
     user_input_in_touple = (
         ord(user_input.lower()[0]) - ord('a'), int(user_input[1:])-1)
     return user_input_in_touple
+
+
+def header(board_size):
+    '''Prints board header'''
+    #print("\033[0;34;48m     Battleship Game  \n")
+    print("🚢".ljust(2), end=" ")
+    for i in range(1, board_size + 1):
+        print(f"{i}" .ljust(3), end=" ")
+    print("\n")
