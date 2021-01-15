@@ -30,10 +30,11 @@ def game_mode():
     clear()
     print(battleship_art[14])
     while True:
-        print("Press 1 to Single Player\n\n")
-        print("Press 2 to Multiplayer ")
+        print("Press 1 to Single Player\n")
+        print("Press 2 to Multiplayer\n")
+        print("Press 3 to AI vs AI\n")
         user_input = input("")
-        if user_input == "1" or user_input == "2":
+        if user_input == "1" or user_input == "2" or user_input == "3":
             clear()
             return user_input
 
@@ -304,6 +305,9 @@ def game_setup():
     elif x == "2":
         setup["player1"] = get_player_name(1)
         setup["player2"] = get_player_name(2)
+    elif x == "3":
+        setup["player1"] = "AI"
+        setup["player2"] = "AI"
     clear()
     print(f"{battleship_art[9]}\nPlease enter custom board size:\n\n")
     setup["board_size"] = get_custom_input(5, 10)
@@ -342,8 +346,8 @@ def main():
         clear()
         print("\033[0;36;48m\n")
         print(
-            f"{setup['player1']}'s turn\nThis is {setup['player2']}'s board.\n")
-        print_board(player1_board)
+            f"{setup['player1']}'s turn\nThis is {setup['player1']}'s board.\n")
+        print_board(player2_board_to_shoot)
         print("This is your hit board.\n")
         player1_board_to_shoot, fleet_coord2 = shooting_phase(player2_board, player1_board_to_shoot, {setup['player1']}, fleet_coord2)
         player1_board_to_shoot, fleet_coord2 = is_sunk(fleet_coord2, player1_board_to_shoot)
@@ -365,7 +369,7 @@ def main():
             break
         print("\033[0;33;48m\n")
         print(f"{setup['player2']}'s turn.\nThis is player2's board.\n")
-        print_board(player2_board)
+        print_board(player1_board_to_shoot)
         print("This is your hit board.\n")
         player2_board_to_shoot, fleet_coord1 = shooting_phase(player1_board, player2_board_to_shoot, {setup['player2']}, fleet_coord1)
         player2_board_to_shoot, fleet_coord1 = is_sunk(fleet_coord1, player2_board_to_shoot)
