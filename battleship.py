@@ -13,13 +13,25 @@ from battleship_ascii import battleship_rules
 
 def clear():
     '''clears console'''
-    os.system("clear")
+    # if os.name == 'nt':
+    #     os.system("cls")
+    # else:
+    #     os.system("clear")
+    os.system('cls' if os.name == 'nt' else 'clear') # ternary operator
+
+    # a = 10
+    # if a == 10:
+    #     b = 0
+    # else:
+    #     b = 100
+    # b = 0 if a == 10 else 100
 
 
 def get_player_name(numero):
     '''Gets player name takes NO. parameter'''
+    CHOOSE_GAME_MODE_INDEX = 8
     clear()
-    print(battleship_art[8])
+    print(battleship_art[CHOOSE_GAME_MODE_INDEX])
     player_name = input(f"Please enter Player{numero} name: \n")
     clear()
     return player_name
@@ -45,6 +57,8 @@ def init_board(board_size):
         board.append(["0"] * (board_size))
     return board
 
+    # return [["0"] * (board_size) for _ range(board_size)]
+
 
 def ask_for_user_input():
     '''Asks for input checks if it"s on the table '''
@@ -58,10 +72,10 @@ def ask_for_user_input():
         except(IndexError, ValueError):
             print("You have entered invalid coordinates, please correct them.")
     user_input_in_touple = (
-        ord(user_input.lower()[0]) - ord('a'), int(user_input[1:])-1)
+        ord(user_input.lower()[0]) - ord('a'), int(user_input[1:])-1) # TODO extract method
     return user_input_in_touple
 
-
+# print_header
 def header(board_size):
     '''Prints board header'''
     #print("\033[0;34;48m     Battleship Game  \n")
@@ -198,6 +212,7 @@ def is_sunk(fleet_coord, boards):
                 row = int(x[0])
                 col = int(x[1])
                 boards[row][col] = "S"
+    # TODO remove print(boards)
     print(boards)
     return boards, fleet_coord
 
