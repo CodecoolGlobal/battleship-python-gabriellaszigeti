@@ -200,3 +200,10 @@ def is_sunk(fleet_coord, boards):
                 boards[row][col] = "S"
     print(boards)
     return boards, fleet_coord
+
+
+def ai_ship_placement(board):
+    '''returns a random value on board '''
+    row = random.randint(0, len(board) - 1)
+    col = random.randint(0, len(board) - 1)
+    return row, col
