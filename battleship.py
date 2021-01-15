@@ -69,3 +69,12 @@ def header(board_size):
     for i in range(1, board_size + 1):
         print(f"{i}" .ljust(3), end=" ")
     print("\n")
+
+
+def print_board(board):
+    '''Prints out Board'''
+    header(len(board))
+    for i in range(len(board)):
+        row = "|".join(board[i])
+        print(f"{ascii_uppercase[i].center(3)}", end=" " + " ".join(row))
+        print("\n")
