@@ -292,3 +292,23 @@ def outro():
     print("\033[0;34;48m \033")
     print(battleship_art[13])
     print(battleship_art[15])
+
+
+def game_setup():
+    '''gets standard setup'''
+    setup = {}
+    x = game_mode()
+    if x == "1":
+        setup["player1"] = get_player_name(1)
+        setup["player2"] = "AI"
+    elif x == "2":
+        setup["player1"] = get_player_name(1)
+        setup["player2"] = get_player_name(2)
+    clear()
+    print(f"{battleship_art[9]}\nPlease enter custom board size:\n\n")
+    setup["board_size"] = get_custom_input(5, 10)
+    clear()
+    print(battleship_art[10])
+    print("Please enter turn limit:\n\n")
+    setup["turn_limit"] = get_custom_input(5, 50)
+    return setup
