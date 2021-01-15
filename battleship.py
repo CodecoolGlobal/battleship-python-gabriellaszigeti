@@ -36,3 +36,11 @@ def game_mode():
         if user_input == "1" or user_input == "2":
             clear()
             return user_input
+
+
+def init_board(board_size):
+    '''Generates board'''
+    board = []
+    for i in range(0, board_size):
+        board.append(["0"] * (board_size))
+    return board
