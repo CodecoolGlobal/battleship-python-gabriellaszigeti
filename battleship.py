@@ -312,3 +312,78 @@ def game_setup():
     print("Please enter turn limit:\n\n")
     setup["turn_limit"] = get_custom_input(5, 50)
     return setup
+
+
+def main():
+    setup = game_setup()
+    fleet = {"Carrier": 4, "Battleship": 3, "Cruiser": 2}
+    #fleet = {"Battleship": 3}
+    sum_fleet = sum(fleet.values())
+    player1_board = init_board(setup["board_size"])
+    player2_board = copy.deepcopy(player1_board)
+    player1_board_to_shoot = copy.deepcopy(player1_board)
+    player2_board_to_shoot = copy.deepcopy(player1_board)
+    print(f"\033[0;34;48m\n")
+    print(
+        f"{battleship_art[11]}\n{setup['player1']} get ready to placement phase!\n\n")
+    input("Press enter to continue...")
+    clear()
+    player1_board, fleet_coord1 = placement_phase(
+        player1_board, fleet, {setup['player1']})
+    print("\033[0;34;48m\n")
+    print(
+        f"{battleship_art[11]}\n{setup['player2']} get ready to placement phase!\n\n")
+    input("Press enter to continue...")
+    clear()
+    player2_board, fleet_coord2 = placement_phase(
+        player2_board, fleet, {setup['player2']})
+    v = True
+    while v is True:
+        clear()
+        print("\033[0;36;48m\n")
+        print(
+            f"{setup['player1']}'s turn\nThis is {setup['player2']}'s board.\n")
+        print_board(player1_board)
+        print("This is your hit board.\n")
+        player1_board_to_shoot, fleet_coord2 = shooting_phase(player2_board, player1_board_to_shoot, {setup['player1']}, fleet_coord2)
+        player1_board_to_shoot, fleet_coord2 = is_sunk(fleet_coord2, player1_board_to_shoot)
+        clear()
+        setup['turn_limit'] -= 1
+        print("\033[0;34;48m\n")
+        print(
+            f"{battleship_art[12]}\n{setup['player2']} get ready to shooting phase!\n\n")
+        # print("\033[0;33;48m\n")
+        input("Press enter to continue...")
+        clear()
+        if is_table_full(player1_board_to_shoot) is False:
+            v = False
+            break
+        if all_ship_sunk(player1_board_to_shoot, sum_fleet) is True:
+            print(f"{setup['player1']} won!")
+            time.sleep(2)
+            v = False
+            break
+        print("\033[0;33;48m\n")
+        print(f"{setup['player2']}'s turn.\nThis is player2's board.\n")
+        print_board(player2_board)
+        print("This is your hit board.\n")
+        player2_board_to_shoot, fleet_coord1 = shooting_phase(player1_board, player2_board_to_shoot, {setup['player2']}, fleet_coord1)
+        player2_board_to_shoot, fleet_coord1 = is_sunk(fleet_coord1, player2_board_to_shoot)
+        clear()
+        setup['turn_limit'] -= 1
+        print("\033[0;34;48m\n")
+        print(
+            f"{battleship_art[12]}{setup['player1']} get ready to shooting phase!\n\n")
+        input("Press enter to continue...")
+        if is_table_full(player2_board_to_shoot) is False:
+            v = False
+            break
+        if all_ship_sunk(player2_board_to_shoot, sum_fleet) is True:
+            print(f"{setup['player2']} won!")
+            time.sleep(2)
+            v = False
+            break
+        if setup['turn_limit'] == 0:
+            print("No more turns, it's a draw!")
+            v = False
+            break
