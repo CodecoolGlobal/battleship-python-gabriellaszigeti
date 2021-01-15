@@ -97,3 +97,63 @@ def get_custom_input(minimum, maximum):
                 f"Invalid input! (must be a number between {minimum}-{maximum})")
     clear()
     return user_input
+
+
+def placement_phase(board, fleet, player_name):
+    '''places ships on board'''
+    fleet_coord = []
+    for part in fleet:
+        ship_coord = {}
+        while True:
+            print_board(board)
+            print(f"{fleet}")
+            print(f"\nYou are currently placing {part}\n")
+            try:
+                if player_name == {'AI'}:
+                    row, col = ai_ship_placement(board)
+                    chars = ["v", "h"]
+                    direction = random.choice(chars)
+                else:
+                    user_input = ask_for_user_input()
+                    row = user_input[0]
+                    col = user_input[1]
+                    direction = get_direction()
+                if direction == "h":
+                    clear()
+                    for j in range(fleet[part]):
+                        if board[row][col + j] == "X":
+                            raise IndexError
+                        if row != 0 and row != len(board) - 1:
+                            if board[row - 1][col + j] == "X" or board[row + 1][col + j] == "X":
+                                raise IndexError
+                    for j in range(fleet[part]):
+                        board[row][col + j] = "X"
+                        coord = str(row) + str(col + j)
+                        ship_coord[coord] = "C"
+                    fleet_coord.append(ship_coord)
+                    print("\n*For Demo purposes only* Ship position: C-clear D-damaged S-sunk")
+                    print(fleet_coord)
+                    break
+                elif direction == "v":
+                    clear()
+                    for j in range(fleet[part]):
+                        if board[row + j][col] == "X":
+                            raise IndexError
+                        if col != 0 and col != len(board) - 1:
+                            if board[row + j][col - 1] == "X" or board[row + j][col + 1] == "X":
+                                raise IndexError
+                    for j in range(fleet[part]):
+                        board[row + j][col] = "X"
+                        coord = str(row + j) + str(col)
+                        ship_coord[coord] = "C"
+                    fleet_coord.append(ship_coord)
+                    print("\n*For Demo purposes only* Ship position: C-clear D-damaged S-sunk")
+                    print(fleet_coord)
+                    break
+            except IndexError:
+                print('Coordinate Error')
+    print_board(board)
+    print("\nAll ships placed!\n")
+    input("Press enter to continue...")
+    clear()
+    return board, fleet_coord
