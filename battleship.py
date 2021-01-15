@@ -387,3 +387,11 @@ def main():
             print("No more turns, it's a draw!")
             v = False
             break
+
+
+if __name__ == "__main__":
+    clear()
+    intro()
+    rules()
+    main()
+    outro()
