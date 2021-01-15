@@ -264,3 +264,12 @@ def all_ship_sunk(board, sum_fleet):
         return True
     else:
         return False
+
+
+def rules():
+    '''prints out rules+ascii art '''
+    clear()
+    print(battleship_art[7])
+    print(battleship_rules[0])
+    input("\nPress any key to continue...")
+    clear()
