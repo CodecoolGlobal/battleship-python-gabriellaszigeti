@@ -189,3 +189,14 @@ def shooting_phase(board, hitboard, player_name, fleet_coord):
         except IndexError:
             print('Coordinate out of range')
     return hitboard, fleet_coord
+
+
+def is_sunk(fleet_coord, boards):
+    for dictionary in fleet_coord:
+        if (all(value == 'D' for value in dictionary.values())):
+            for x in dictionary.keys():
+                row = int(x[0])
+                col = int(x[1])
+                boards[row][col] = "S"
+    print(boards)
+    return boards, fleet_coord
