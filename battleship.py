@@ -157,3 +157,35 @@ def placement_phase(board, fleet, player_name):
     input("Press enter to continue...")
     clear()
     return board, fleet_coord
+
+
+def shooting_phase(board, hitboard, player_name, fleet_coord):
+    '''Marks input on hitboard if all parameters are ok'''
+    while True:
+        try:
+            print("\n*For Demo purposes only* Ship position: C-clear D-damaged S-sunk")
+            print(fleet_coord)
+            print_board(hitboard)
+            if player_name == {'AI'}:
+                row, col = get_ai_move(hitboard)
+            else:
+                user_input = ask_for_user_input()
+                row = user_input[0]
+                col = user_input[1]
+            if hitboard[row][col] == 'H' or hitboard[row][col] == 'S' or hitboard[row][col] == 'M':
+                print('You already placed in this field.')
+                continue
+            elif board[row][col] == 'X':
+                hitboard[row][col] = 'H'
+                print('You have hit a ship')
+                coord = str(row) + str(col)
+                for i in fleet_coord:
+                    i[coord] = "D"
+                break
+            elif board[row][col] == '0':
+                hitboard[row][col] = 'M'
+                print('You have missed it')
+                break
+        except IndexError:
+            print('Coordinate out of range')
+    return hitboard, fleet_coord
