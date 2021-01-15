@@ -246,3 +246,8 @@ def get_direction():
             return direction
         else:
             print("\nWrong input! :(\n")
+
+
+def is_table_full(board):
+    '''checks if table is full'''
+    return any('0' in x for x in board)
