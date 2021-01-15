@@ -78,3 +78,22 @@ def print_board(board):
         row = "|".join(board[i])
         print(f"{ascii_uppercase[i].center(3)}", end=" " + " ".join(row))
         print("\n")
+
+
+def get_custom_input(minimum, maximum):
+    '''Used to get input checks if it is beteween mininmum and maximum parameter'''
+    while True:
+        try:
+            user_input = int(
+                input(f"Please enter a number between {minimum}-{maximum}): \n"))
+            if user_input >= minimum and user_input <= maximum:
+                clear()
+                return user_input
+            else:
+                print(
+                    f"Invalid input! (must be a number between {minimum}-{maximum})")
+        except ValueError:
+            print(
+                f"Invalid input! (must be a number between {minimum}-{maximum})")
+    clear()
+    return user_input
