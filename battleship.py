@@ -251,3 +251,16 @@ def get_direction():
 def is_table_full(board):
     '''checks if table is full'''
     return any('0' in x for x in board)
+
+
+def all_ship_sunk(board, sum_fleet):
+    '''checks if all ships are sunk'''
+    sunk_sum = 0
+    for row in board:
+        for i in row:
+            if i == "S":
+                sunk_sum += 1
+    if sunk_sum == sum_fleet:
+        return True
+    else:
+        return False
