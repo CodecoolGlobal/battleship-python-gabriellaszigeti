@@ -207,3 +207,32 @@ def ai_ship_placement(board):
     row = random.randint(0, len(board) - 1)
     col = random.randint(0, len(board) - 1)
     return row, col
+
+
+def get_ai_move(player_hit_board):
+    '''simple ai tries to hit ship parts returns coords'''
+    while True:
+        try:
+            for lists in player_hit_board:
+                for element in lists:
+                    if element == "H":
+                        row = player_hit_board.index(lists)
+                        col = lists.index(element) + 1
+                        if player_hit_board[row][col] == "M":
+                            col -= 1
+                            row += 1
+                        if player_hit_board[row][col] == "M":
+                            row -= 2
+                        if player_hit_board[row][col] == "M":
+                            row += 1
+                            col -= 1
+                        return row, col
+                    else:
+                        raise IndexError
+        except IndexError:
+            row = random.randint(0, len(player_hit_board) - 1)
+            col = random.randint(0, len(player_hit_board) - 1)
+            print("Bad AI! Dumb move!")
+            time.sleep(1)
+            break
+    return row, col
