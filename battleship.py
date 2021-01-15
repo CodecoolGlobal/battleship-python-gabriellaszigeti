@@ -236,3 +236,13 @@ def get_ai_move(player_hit_board):
             time.sleep(1)
             break
     return row, col
+
+
+def get_direction():
+    '''horizontal or vertical '''
+    while True:
+        direction = input("H for horizontal, V for vertical: \n").lower()
+        if direction == "h" or direction == "v":
+            return direction
+        else:
+            print("\nWrong input! :(\n")
